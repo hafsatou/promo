@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h1>Products</h1>
+        <hr>
+        <h2>Notication</h2>
+        <form method="post" action="/admin/clear">
+            <input type="submit" value="clear">
+        </form>
+        {{# each notif }}
+            <li class="list-group-item">
+                The Product <strong>{{ this.product.title }}</strong> Has Been Bought in Promotion for ${{ this.product.promo_price }}
+            </li>
+        {{/each}}
+        <hr>
+        <h2>Product List</h2>
+        {{# each products }}
+            <li class="list-group-item">
+                <strong>{{ this.title }}</strong>
+                ${{ this.price }}  {{#if this.promo}}/ Promtion ${{ this.promo_price }} {{/if}}
+                <form method="post" action="/admin">
+                    <input value="{{ this._id }}" name="_id" hidden>
+                    <input value="{{ this.promo_price }}" type="number" name="promo_price">
+
+                    <input type="submit">
+                </form>
+            </li>
+        {{/each}}
+
+    </div>
+</div>
